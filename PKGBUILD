@@ -87,6 +87,9 @@ prepare() {
   fi
   cd chromium-$pkgver
 
+  # dark mode patch
+  sed -i "s/constexpr static int kFreedesktopColorSchemeDark = 1/constexpr static int kFreedesktopColorSchemeDark = 2/" chrome/browser/ui/views/dark_mode_manager_linux.h
+
   # Allow building against system libraries in official builds
   sed -i 's/OFFICIAL_BUILD/GOOGLE_CHROME_BUILD/' \
     tools/generate_shim_headers/generate_shim_headers.py
